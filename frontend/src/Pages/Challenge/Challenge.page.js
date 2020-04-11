@@ -45,8 +45,8 @@ class Challenege extends React.Component {
             })
         })
         if(num === 1)
-        this.setState({groups,items,startDate:moment(events.content[0].startDate).valueOf(),endDate:moment(events.content[0].endDate).valueOf()})
-        else if(num === 2)
+        this.setState({groups,items,id:events.content[0].id,startDate:moment(events.content[0].startDate).valueOf(),endDate:moment(events.content[0].endDate).valueOf()})
+        else
         this.setState({groups,items})
     }
     async componentDidMount(){
@@ -58,8 +58,8 @@ class Challenege extends React.Component {
               },
         })
         const data = await resp.json()
-        const {id,email} = data
-        this.setState({id,email})
+        const {email} = data
+        this.setState({email})
         await this.utilsFunc(1)
     }
     handleChoice = (choice) => this.setState({choice})
@@ -75,8 +75,9 @@ class Challenege extends React.Component {
 
 
     handleClick = async() =>{
-    console.log(startTime);
+
         const {id,email,duration,startTime} = this.state
+
         // const region = moment.tz.guess()
      //   if(!startTime)
        // return;
